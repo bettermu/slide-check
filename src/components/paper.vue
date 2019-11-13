@@ -35,25 +35,18 @@ export default {
 
     mounted() {
         this.$nextTick(() => {
-
             let paper = this.$refs.paper
             let block = this.$refs.block
             let ctx = paper.getContext('2d')
             let block_ctx = block.getContext('2d')
-
             let img = document.createElement('img')
-
-            img.onload = () => {
-                
+            img.onload = () => { 
                 ctx.drawImage(img, 0, 0, 300, 180)
                 this.draw(ctx,'fill')
                 //绘制碎片形状
                 this.draw(block_ctx,'clip') //这里要注意，先画路径，之后再填充图片
                 block_ctx.drawImage(img, 0, 0, 300, 180)
-                
-
             }
-
             img.src = require("../assets/bg-img.jpg")
 
         })
@@ -82,15 +75,12 @@ export default {
             //绘制左侧弧形,true表示逆时针绘制
             ctx.arc(this.x, this.y + 25, 10, this.deg2arc(90), this.deg2arc(-90), true)
             ctx.lineTo(this.x, this.y)
-
-            //this.draw(ctx)
             ctx.lineWidth = 1;
             ctx.fillStyle = "rgba(255, 255, 255, 1)";
             ctx.strokeStyle = "rgba(255, 255, 255, 1)";
             ctx.stroke();
             ctx[opt]() 
             ctx.globalCompositeOperation = "xor";
-
         },
 
         //绘制碎片的方法
@@ -109,6 +99,7 @@ export default {
             this.draw(ctx)
             ctx.fill()
         },
+        //角度转弧度
         deg2arc(deg) {
             return deg / 180 * Math.PI
         }
@@ -128,7 +119,6 @@ export default {
         position: absolute;
         top: 0;
         left: 0;
-
     }
 
     .block {
