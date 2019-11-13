@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <Paper></Paper>
-    <Slide></Slide>
+    <Paper :diff="diff"></Paper>
+    <Slide @change="change"></Slide>
   </div>
 </template>
 
@@ -11,9 +11,19 @@ import Slide from '@/components/slide.vue'
 
 export default {
   name: 'app',
+  data(){
+    return {
+      diff:0
+    }
+  },
   components: {
     Paper,
     Slide
+  },
+  methods:{
+    change(diff){
+      this.diff = diff
+    }
   }
 }
 </script>

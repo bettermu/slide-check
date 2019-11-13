@@ -11,10 +11,25 @@
 <script>
 export default {
 
+    props:{
+        diff:{
+            default:0,
+            type:Number
+        }
+    },
+
     data() {
         return {
             x: this.getRandom(150, 240),
             y: this.getRandom(20, 50),
+        }
+    },
+
+    watch:{
+        diff(newV){
+            let v = newV - 150
+            console.log(v)
+            this.$refs.block.style.transform = `translateX(${v}px)`
         }
     },
 
@@ -117,7 +132,7 @@ export default {
     }
 
     .block {
-        left: -150px;
+        transform:translateX(-150px)
     }
 }
 </style>
