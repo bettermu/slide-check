@@ -21,14 +21,14 @@ export default {
     data() {
         return {
             x: 200,
-            y: this.getRandom(20, 50),
+            y: this.getRandom(20, 90),
         }
     },
 
     watch:{
         diff(newV){
             let v = newV - 180
-            console.log(v)
+            //console.log(v)
             this.$refs.block.style.transform = `translateX(${v}px)`
         }
     },

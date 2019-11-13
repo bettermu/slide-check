@@ -2,7 +2,7 @@
 <div class="wrap">
     <div class="progress-wrap">
         <div ref="inner" class="inner-bar"></div>
-        <div ref="button" class="button" @mousedown="down" @mousemove.stop="move" @mouseup="up"></div>
+        <div ref="button" class="button" @mousedown="down" @mousemove="move" @mouseup="up"></div>
     </div>
 </div>
 </template>
@@ -21,8 +21,12 @@ export default {
 
     mounted() {
         this.$nextTick(() => {
-            //let that = this
-             
+            let that = this
+
+            document.addEventListener('mouseup', that.up)
+
+            document.addEventListener('mousedown', that.down)
+
         })
     },
     watch: {
@@ -34,8 +38,12 @@ export default {
 
         //按下按钮处理
         down(e) {
-            this.isDown = true
-            this.x = e.pageX
+            if (e.target === this.$refs.button) {
+                this.isDown = true
+                this.x = e.pageX
+
+                document.addEventListener("mousemove", this.move)
+            }
 
         },
 
@@ -43,32 +51,34 @@ export default {
         move(e) {
             if (this.isDown) {
                 //console.log(e)
-                this.curX = e.pageX
-                this.diff = (this.curX - this.x) < -2 ? 0 : (this.curX - this.x) >220? 220 : this.curX - this.x
+                    this.curX = e.pageX
+                    this.diff = (this.curX - this.x) < -2 ? 0 : (this.curX - this.x) > 220 ? 220 : this.curX - this.x
 
-                // if(this.diff === 220) {
-                    
-                // }
+                    // if(this.diff === 220) {
+
+                    // }
+
+                    if (this.diff > -2 && this.diff < 260) {
+                        this.$refs.inner.style.width = (this.diff + 20) + 'px'
+                        this.$refs.button.style.transform = `translateX(${this.diff}px)`
+                    }
                 
-                if (this.diff > -2 && this.diff < 260) {
-                    this.$refs.inner.style.width = (this.diff + 20) + 'px'
-                    this.$refs.button.style.transform = `translateX(${this.diff}px)`
-                }
 
             }
         },
 
         //鼠标抬起处理
         up() {
-            
+
             if (this.diff > 178 && this.diff < 182) {
                 alert("验证成功")
-            } 
+            }
+            document.removeEventListener('mousemove', this.move)
             this.reset()
 
         },
 
-        reset(){
+        reset() {
             this.isDown = false
             this.diff = 0
             this.$refs.inner.style.width = 20 + 'px'
