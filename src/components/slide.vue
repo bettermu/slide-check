@@ -2,7 +2,7 @@
 <div class="wrap">
     <div class="progress-wrap">
         <div ref="inner" class="inner-bar"></div>
-        <div ref="button" class="button" @mousedown="down" @mousemove="move" @mouseup="up"></div>
+        <div ref="button" class="button" @mousedown="down" @mousemove.stop="move" @mouseup="up"></div>
     </div>
 </div>
 </template>
@@ -22,13 +22,7 @@ export default {
     mounted() {
         this.$nextTick(() => {
             //let that = this
-            // document.addEventListener('mouseup', function () {
-            //     that.isDown = false
-            //     this.reset()
-            // })
-            //document.addEventListener('mousemove',function(){
-            //    that.isDown = false
-            //})
+             
         })
     },
     watch: {
