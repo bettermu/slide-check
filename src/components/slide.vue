@@ -66,9 +66,7 @@ export default {
             console.log(this.diff)
             if (this.diff > 145 && this.diff < 155) {
                 alert("验证成功")
-            } else {
-
-            }
+            } 
             this.diff = 0
             this.$refs.inner.style.width = 20 + 'px'
             this.$refs.button.style.transform = `translateX(0)`

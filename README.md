@@ -9,4 +9,13 @@
 
 * 2019.11.13
 
- * 完成图片模块的编写
+    * 完成图片模块的编写
+
+    * 滑动模块编写
+
+> 完成后的效果图:       
+
+
+![](https://github.com/bettermu/blog-picture-store/blob/master/20191113/1.gif?raw=true)
+
+> 目前还没有加上一些边界的判断，参考了下bilibili网站的实现，后续时间会完善
