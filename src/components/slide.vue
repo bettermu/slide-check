@@ -21,11 +21,11 @@ export default {
 
     mounted() {
         this.$nextTick(() => {
-            let that = this
-            document.addEventListener('mouseup', function () {
-                that.isDown = false
-                console.log(that)
-            })
+            //let that = this
+            // document.addEventListener('mouseup', function () {
+            //     that.isDown = false
+            //     this.reset()
+            // })
             //document.addEventListener('mousemove',function(){
             //    that.isDown = false
             //})
@@ -50,8 +50,12 @@ export default {
             if (this.isDown) {
                 //console.log(e)
                 this.curX = e.pageX
-                this.diff = this.curX - this.x
+                this.diff = (this.curX - this.x) < -2 ? 0 : (this.curX - this.x) >220? 220 : this.curX - this.x
 
+                // if(this.diff === 220) {
+                    
+                // }
+                
                 if (this.diff > -2 && this.diff < 260) {
                     this.$refs.inner.style.width = (this.diff + 20) + 'px'
                     this.$refs.button.style.transform = `translateX(${this.diff}px)`
@@ -62,15 +66,19 @@ export default {
 
         //鼠标抬起处理
         up() {
-            this.isDown = false
-            console.log(this.diff)
-            if (this.diff > 145 && this.diff < 155) {
+            
+            if (this.diff > 178 && this.diff < 182) {
                 alert("验证成功")
             } 
+            this.reset()
+
+        },
+
+        reset(){
+            this.isDown = false
             this.diff = 0
             this.$refs.inner.style.width = 20 + 'px'
             this.$refs.button.style.transform = `translateX(0)`
-
         }
 
     }
