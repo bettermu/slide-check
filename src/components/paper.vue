@@ -82,23 +82,6 @@ export default {
             ctx[opt]() 
             ctx.globalCompositeOperation = "xor";
         },
-
-        //绘制碎片的方法
-        clipFragment(ctx) {
-            this.draw(ctx)
-            ctx.lineWidth = 1;
-            ctx.fillStyle = "rgba(255, 255, 255, 1)";
-            ctx.strokeStyle = "rgba(255, 255, 255, 1)";
-            ctx.stroke();
-            ctx.clip() 
-            ctx.globalCompositeOperation = "xor";
-            
-        },
-        //绘制碎片的方法
-        drawFragment(ctx) {
-            this.draw(ctx)
-            ctx.fill()
-        },
         //角度转弧度
         deg2arc(deg) {
             return deg / 180 * Math.PI
